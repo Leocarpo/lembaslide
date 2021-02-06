@@ -1,3 +1,11 @@
+/*
+
+@nome: Lemba Slide
+@autor: Leocarpo Manuel
+@email: leocarpomanuel@gmail.com
+
+*/
+
 window.addEventListener('load',()=>{
 	
 (new lembaSlide())
@@ -11,8 +19,8 @@ class lembaSlide{
 constructor(){
 	const lembaC = document.querySelector('.LembaC');
 	const lembaT = lembaC.children.length
-	const lembaNext = document.querySelector('.next');
-	const lembaPrev = document.querySelector('.prev');
+	const lembaNext = document.querySelector('.Lembanext');
+	const lembaPrev = document.querySelector('.Lembaprev');
 
 	let i = 0;
 	let lembaS = '';
@@ -24,57 +32,50 @@ constructor(){
 		if(i<=0)lembaC.children[i].style.display='block';		
 		// display none on all rest div child
 		else lembaC.children[i].style.display='none';
-		// lembaC.children[i].style.display='none';
+
 		
 	}
 
-	function lembanext(){
-		
-	if(i==lembaT){
-				i=0
-			//zerar a contagem
-		}
-		lembaC.children[i].style.display='none'
+	function lembaMovment(str){
 
-		i++
-		i=i+lembaT
-		i=i%lembaT
-		// console.log(i)
-		lembaC.children[i].style.display='block'
-	}
-
-	function lembaprev(){
-		
 		if(i==lembaT){
-				i=0
+			i=0
 			//zerar a contagem
 		}
-		
-		lembaC.children[i].style.display='none'
 
-		i--
+		lembaC.children[i].style.display='none'
+		
+		switch(str){
+			case '--':
+			i--;
+			break;
+			
+			case '++':
+			i++;
+			break;
+		}
+		
 		i=i+lembaT
 		i=i%lembaT
-		// console.log(i)
 		lembaC.children[i].style.display='block'
 		
 	}
 
 	lembaNext.addEventListener('click', ()=>{
 		
-		lembanext()
+		lembaMovment('++')
 				
 	})
 
 	lembaPrev.addEventListener('click', ()=>{
 		
-		lembaprev()
+		lembaMovment('--')
 		
 	})
 
 	lembaS = setInterval(()=>{
 		
-		lembanext()
+		lembaMovment('++')
 		
 	}, 2000)
 
